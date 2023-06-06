@@ -1,16 +1,8 @@
-# Torch
---find-links https://download.pytorch.org/whl/torch_stable.html
-torch==1.5.0+cu101
-torchvision==0.6.0+cu101
-
-# Detectron
---find-links https://dl.fbaipublicfiles.com/detectron2/wheels/cu101/index.html
-detectron2
-
-# torch==2.0.0
-# torchvision==0.15.1
+torch==2.0.0
+torchvision==0.15.1
 Werkzeug==2.3.4
-# detectron2 @ git+https://github.com/facebookresearch/detectron2.git@dd2db71b0f8d855b71cac655186cbddca1bfda93
+-f https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.8/index.html 
+detectron2
 Flask==2.3.2
 numpy==1.24.2
 scipy==1.10.1
