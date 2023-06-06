@@ -1,0 +1,6 @@
+Werkzeug==2.3.4
+detectron2 @ git+https://github.com/facebookresearch/detectron2.git@dd2db71b0f8d855b71cac655186cbddca1bfda93
+Flask==2.3.2
+numpy==1.24.2
+scipy==1.10.1
+matplotlib==3.7.1
