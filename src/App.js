@@ -118,10 +118,10 @@ function App() {
                     Previous Work
                   </p>
                   <p style={{color: 'rgb(97, 97, 97)', fontSize: '18px', marginTop: '0', marginBottom: '5px', lineHeight:"28px"}}>
-                    We identified that this would be done best by segmentation, that way we could highlight the holds well. After researching and experimenting with multiple models our group decided to use Facebook AI Research’s (FAIR) Detectron2 model. The model has a record of good performance for object detection and segmentation, on top of that Detectron2 includes an implementation of Mask R-CNN as one of its predefined models making it easy to use.
+                  We identified that this would be done best by segmentation, that way we could highlight the holds well. After researching and experimenting with multiple models our group decided to use a mask R-CNN model that was pre trained on the COCO dataset, built and trained using Facebook AI Research’s (FAIR) Detectron2 framework. The model uses Resnet101 and a Feature Pyramid Network to create feature maps which are then passed into the Region Proposal Network (RPN) to generate object regions.. The regions are then flattened and passed into the Region of Interest (ROI) head, which generates bounding boxes and performs segmentation and classification.
                   </p>
                 </div>
-                <img style={{width: '600px', height: '200px', borderRadius: '10px', marginTop: '25px', marginLeft: '25px' }} src={process.env.PUBLIC_URL + '/dete.png'} alt='spray wall image' />
+                <img style={{width: '220px', height: '220px', borderRadius: '10px', marginTop: '10px', marginLeft: '25px' }} src={process.env.PUBLIC_URL + '/dete.png'} alt='spray wall image' />
               </ParagraphContainer>
               <ParagraphContainer>
                 <div style={{textAlign: 'left'}}>
@@ -129,7 +129,7 @@ function App() {
                     Approach
                   </p>
                   <p style={{color: 'rgb(97, 97, 97)', fontSize: '18px', marginTop: '0', marginBottom: '5px', lineHeight:"28px"}}>
-                    We trained the model on climbing holds data found on a website called Roboflow. They have semi-decent datasets in coco format. We then randomly selected a start and end hold given how long we wanted the climbing route to be. We had 2 different algorithms we implemented to identify holds from the start hold to the end hold. Our first - was a basic algorithm that calculated all the possible holds that could be reached from the start hold and then chose the hold which was the closest to the final hold. Our second algorithm selected a random hold from all possible holds you could move to and the randomness was influenced based on the distances of the possible holds to the end hold.
+                    We trained the model on climbing holds data found on a website called Roboflow. They have semi-decent datasets in COCO format. We then randomly selected a start and end hold given how long we wanted the climbing route to be. We had 2 different algorithms we implemented to identify holds from the start hold to the end hold. Our first - was a basic algorithm that calculated all the possible holds that could be reached from the start hold and then chose the hold which was the closest to the final hold. Our second algorithm selected a random hold from all possible holds you could move to and the randomness was influenced based on the distances of the possible holds to the end hold.
                   </p>
                 </div>
               </ParagraphContainer>
@@ -170,15 +170,15 @@ function App() {
                   </div>
                   <h2 style={{color: 'rgb(97, 97, 97)', fontSize: '18px', marginTop: '25px', marginBottom: '0', lineHeight:"28px", marginLeft: '25px'}}>Euclidean Distance</h2>
                   <div>
-                    <img style={{width: '300px', height: '300px', borderRadius: '10px', marginTop: '15px', marginLeft: '25px' }} src={process.env.PUBLIC_URL + spray + '/e1.png'} alt='spray wall image 4' />
-                    <img style={{width: '300px', height: '300px', borderRadius: '10px', marginTop: '15px', marginLeft: '25px' }} src={process.env.PUBLIC_URL + spray + '/e2.png'} alt='spray wall image 4' />
-                    <img style={{width: '300px', height: '300px', borderRadius: '10px', marginTop: '15px', marginLeft: '25px' }} src={process.env.PUBLIC_URL + spray + '/e3.png'} alt='spray wall image 4' />
+                    <img style={{width: '308px', height: '308px', borderRadius: '10px', marginTop: '15px', marginLeft: '18px' }} src={process.env.PUBLIC_URL + spray + '/e1.png'} alt='spray wall image 4' />
+                    <img style={{width: '308px', height: '308px', borderRadius: '10px', marginTop: '15px', marginLeft: '18px' }} src={process.env.PUBLIC_URL + spray + '/e2.png'} alt='spray wall image 4' />
+                    <img style={{width: '308px', height: '308px', borderRadius: '10px', marginTop: '15px', marginLeft: '18px' }} src={process.env.PUBLIC_URL + spray + '/e3.png'} alt='spray wall image 4' />
                   </div>
                   <h2 style={{color: 'rgb(97, 97, 97)', fontSize: '18px', marginTop: '25px', marginBottom: '0', lineHeight:"28px", marginLeft: '25px'}}>Random Euclidean Distance</h2>
                   <div>
-                    <img style={{width: '300px', height: '300px', borderRadius: '10px', marginTop: '15px', marginLeft: '25px' }} src={process.env.PUBLIC_URL + spray + '/r1.png'} alt='spray wall image 4' />
-                    <img style={{width: '300px', height: '300px', borderRadius: '10px', marginTop: '15px', marginLeft: '25px' }} src={process.env.PUBLIC_URL + spray + '/r2.png'} alt='spray wall image 4' />
-                    <img style={{width: '300px', height: '300px', borderRadius: '10px', marginTop: '15px', marginLeft: '25px' }} src={process.env.PUBLIC_URL + spray + '/r3.png'} alt='spray wall image 4' />
+                    <img style={{width: '308px', height: '308px', borderRadius: '10px', marginTop: '15px', marginLeft: '18px' }} src={process.env.PUBLIC_URL + spray + '/r1.png'} alt='spray wall image 4' />
+                    <img style={{width: '308px', height: '308px', borderRadius: '10px', marginTop: '15px', marginLeft: '18px' }} src={process.env.PUBLIC_URL + spray + '/r2.png'} alt='spray wall image 4' />
+                    <img style={{width: '308px', height: '308px', borderRadius: '10px', marginTop: '15px', marginLeft: '18px' }} src={process.env.PUBLIC_URL + spray + '/r3.png'} alt='spray wall image 4' />
                   </div>
                   <p style={{color: 'rgb(97, 97, 97)', fontSize: '18px', marginTop: '15px', marginBottom: '5px', lineHeight:"28px"}}>
                     As can be seen, the random euclidean distance provides a larger variety of routes than the euclidean distance. This is because the random euclidean distance is not always trying to find the fastest way to get to the top and can therefore create routes that are more interesting.
