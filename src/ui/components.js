@@ -17,7 +17,7 @@ export const TopBox = styled('div', {
     flexDirection: "column",
   
     alignItems: "center",
-    background: "linear-gradient(45deg, #4568dc, 68%, #b06ab3)"
+    background: "linear-gradient(45deg, #FF8008, 68%, #FFC837)"
 
 })
 
@@ -62,7 +62,7 @@ export const MiniParagraphBox = styled('div', {
     width: "1380",
     textAlign:"left",
     paddingInline: "20px",
-    color: "#e0e0e0",
+    color: "white",
     paddingBottom:"40px",
     fontWeight:"5",
 })
@@ -74,7 +74,7 @@ export const BraggingBox = styled('div', {
     backdropFilter: "blur(15px)",
     paddingBottom: "10px",
     paddingTop:"10px",
-    marginTop:"-40px",
+    marginTop:"-50px",
     marginBottom:"40px",
     borderRadius:"10px",
     width: "1380",
@@ -98,7 +98,7 @@ export const InteranalParagraphBox = styled('div', {
     fontSize:"30px",
     flexDirection: "column",
     height: "80px",
-    color:"#FFFFFF",
+    color:"#616161",
     '@bp3': {
    
       },
@@ -115,7 +115,7 @@ export const InteranalParagraphBoxDisapear = styled('div', {
     // maxWidth: "1000px",
     flexDirection: "column",
     height: "80px",
-    color:"#FFFFFF",
+    color:"#616161",
     
     '@bp630': {
         display:"none"
@@ -135,7 +135,7 @@ export const InteranalParagraphBoxDisapearLater = styled('div', {
     // maxWidth: "1000px",
     flexDirection: "column",
     height: "80px",
-    color:"#FFFFFF",
+    color:"#616161",
     
     '@bp400': {
         display:"none"
@@ -161,11 +161,29 @@ export const HorizontalFlexBox = styled('div', {
 
 export const Top = styled('div', {
     fontSize:"$header1",
-    color:"#FFFFFF",
+    color:"#616161",
     
 })
 
 export const Bottom = styled('div', {
     fontSize:"$title",
   
+})
+
+export const ParagraphContainer = styled('div', {
+    display: 'flex',
+    width: '980px',
+    background: 'transparent',
+    alignItems: 'top',
+    textAlign: 'center',
+    paddingBottom:"40px",
+
+    '@bp0': {
+        width: '720px',
+        flexDirection: 'column',
+        alignItems:"center",
+    },
+    '@bp734': {
+        width:"375px"
+    }
 })
