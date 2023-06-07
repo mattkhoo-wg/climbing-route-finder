@@ -29,25 +29,51 @@ app = Flask(__name__)
 UPLOAD_FOLDER = './uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+# def generate_path(holds, start_idx, end_idx, max_move_dist, dist_matrix):
+#     path = [start_idx]
+#     current_hold_idx = start_idx
+
+#     while current_hold_idx != end_idx:
+#         print('hi')
+#         possible_moves = np.where(dist_matrix[current_hold_idx, :] < max_move_dist)[0]
+#         possible_moves = [idx for idx in possible_moves if idx not in path]
+
+#         if not possible_moves:
+#             print(current_hold_idx)
+#             raise ValueError("No possible moves. Increase max_move_dist or change holds.")
+        
+#         # Get the Euclidean distances to the end hold for all possible moves
+#         distances_to_end = np.sqrt(np.sum((holds[possible_moves] - holds[end_idx])**2, axis=1))
+
+#         # Choose the hold with the smallest distance to the end hold
+#         next_hold_idx = possible_moves[np.argmin(distances_to_end)]
+        
+#         path.append(next_hold_idx)
+#         current_hold_idx = next_hold_idx
+
+#     return path
+
 def generate_path(holds, start_idx, end_idx, max_move_dist, dist_matrix):
     path = [start_idx]
     current_hold_idx = start_idx
+    num_holds = 7
 
-    while current_hold_idx != end_idx:
-        print('hi')
+    while len(path) != num_holds:
         possible_moves = np.where(dist_matrix[current_hold_idx, :] < max_move_dist)[0]
         possible_moves = [idx for idx in possible_moves if idx not in path]
 
         if not possible_moves:
-            print(current_hold_idx)
             raise ValueError("No possible moves. Increase max_move_dist or change holds.")
-        
+
         # Get the Euclidean distances to the end hold for all possible moves
         distances_to_end = np.sqrt(np.sum((holds[possible_moves] - holds[end_idx])**2, axis=1))
 
-        # Choose the hold with the smallest distance to the end hold
-        next_hold_idx = possible_moves[np.argmin(distances_to_end)]
-        
+        # Select a random hold from the possible moves based on their distances to the end hold
+        # Adjust the randomness by modifying the weights based on the distances
+        weights = distances_to_end.max() - distances_to_end
+        probabilities = weights / np.sum(weights)
+        next_hold_idx = np.random.choice(possible_moves, p=probabilities)
+
         path.append(next_hold_idx)
         current_hold_idx = next_hold_idx
 
@@ -60,6 +86,8 @@ def process_uploaded_image(file_path, filename):
     print(outputs)
     print(outputs)
     instances = outputs['instances']
+    
+
 
     pred_boxes = instances.pred_boxes
     # Convert the Boxes object to tensor
@@ -100,7 +128,7 @@ def process_uploaded_image(file_path, filename):
     random_end_idx = np.random.choice(end_indices)
     
     dist_matrix = distance_matrix(center_coordinates, center_coordinates)
-    max_move_dist = 150
+    max_move_dist = 250
 
     path = generate_path(center_coordinates, random_start_idx, random_end_idx, max_move_dist, dist_matrix)
     
@@ -124,6 +152,9 @@ def process_uploaded_image(file_path, filename):
     # Saving the image as a .jpeg file
     location = f"./outputs/+ {filename}"
     cv2.imwrite(location, out.get_image()[:, :, ::-1])
+    
+    out1 = visualizer.draw_instance_predictions(instances.to("cpu"))
+    cv2.imwrite('./class/class.png', out1.get_image()[:, :, ::-1])
     return location
     
 
